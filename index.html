@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // Example 1 by callback (Real World example)
+    // const loginUser = (email, password, cb) => {
+    //     setTimeout(() => {
+    //         cb(email)
+    //     }, 2000)
+    // }
+
+    // const getVideos= (email,callback)=>{
+    //     setTimeout(()=>{
+    //         callback(["video1","video2","video3"])
+
+    //     },3000)
+    // }
+
+    // loginUser("abbas@abc.com", 1234, (em) => {
+    //     console.log(em)
+    //     getVideos(em,(videos)=>{
+    //         console.log(videos)
+
+    //     })
+    // })
+
+
+    // Example 1 by promises
+    // Making promise to do by either then,catch or async,await  
+
+    // We are making promise then to use it as an object like .then and .catch
+    const loginUserPromise = (email, password) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (email === "abbas@abc.com" && password === 1234) {
+                    resolve(email)
+
+                } else {
+                    reject("Invalid Email or password")
+                }
+            }, 2000)
+        })
+    }
+
+
+    const getVideosPromise = (email) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (email) {
+                    resolve(["video1", "video2", "video3"])
+
+                } else {
+                    reject("Please provide your email")
+                }
+            }, 3000)
+
+        })
+    }
+
+    // by then and catch (by promises)
+
+    // loginUserPromise("abbas@abc.com", 1234)
+    //     .then((email) => {
+    //         console.log(email)
+    //         return getVideosPromise("abbas@abc.com")
+    //     })
+    //     .then((videos) => {
+    //         console.log(videos)
+    //     })
+    //     .catch((err) => {
+    //         console.log(err)
+    //     })    
+    //  When using .then and .catch with Promises in Javascript, put only one .catch at the end to handle any errors from the earlier .then blocks. This keeps your code simple and error handling centralized.
+
+
+
+    // by async and await (More easy method by promises)
+
+    // const getUserDetails = async () => {
+    //     try {
+    //         const email = await loginUserPromise("abbas@abc.com", 1234)
+    //         console.log(email)
+    //         const videos = await getVideosPromise(email)
+    //         console.log(videos)
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+
+    // getUserDetails()
+
+    // console.log("first")
+
+
+    // Example 2  (Only promises)
+    //Making promise to do by either then,catch or async,await  
+    const checkMyResult = (myMarks) => {
+
+        const promise = new Promise((resolve, reject) => {
+            if (myMarks > 80) {
+                resolve("Promise successful")
+            } else {
+                reject("fail")
+            }
+        })
+        return promise
+    }
+
+    // by then and catch (by promises)
+    // checkMyResult(88)
+    //     .then((message) => {
+    //     console.log(message)
+    //     return "treat"           // What is returned here will be printed in the next then
+
+    // })
+    // .then((msg) => {
+    //     console.log(msg)
+    // })
+    // .catch((err) => {
+    //     console.log(err)
+    // })
+
+    // by async and await
+    const displayMarksResult = async () => {
+        try {
+            const marksResult = await checkMyResult(50)
+            console.log(marksResult)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    displayMarksResult()
+    console.log("It will print first")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<!-- parameter lay kar function may daalta/chalata hai
+
+    catch aik hi hoga -->
+
+</html>
